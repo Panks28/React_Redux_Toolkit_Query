@@ -1,7 +1,6 @@
-import React, { useEffect, useCallback, useMemo } from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setProducts, fetchProducts } from "../redux/actions/productsActions";
+import { fetchProducts } from "../redux/actions/productsActions";
 import ProductComponent from "./ProductComponent";
 
 const ProductListing = () => {

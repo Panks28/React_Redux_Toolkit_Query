@@ -8,6 +8,13 @@ export const fetchProducts = () => {
   };
 };
 
+export const fetchProductDetail = (id) => {
+   return async (dispatch) => {
+    const response = await fakeStoreApi.get("/products/" + id);
+    dispatch({ type: ActionTypes.FETCH_PRODUCT_DETAILS, payload: response.data });
+  };
+};
+
 export const setProducts = (products) => {
   return {
     type: ActionTypes.SET_PRODUCTS,
