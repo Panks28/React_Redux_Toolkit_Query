@@ -9,9 +9,20 @@ export const fetchProducts = () => {
 };
 
 export const fetchProductDetail = (id) => {
-   return async (dispatch) => {
+  return async (dispatch) => {
     const response = await fakeStoreApi.get("/products/" + id);
-    dispatch({ type: ActionTypes.FETCH_PRODUCT_DETAILS, payload: response.data });
+    dispatch({
+      type: ActionTypes.FETCH_PRODUCT_DETAILS,
+      payload: response.data,
+    });
+  };
+};
+
+export const addProduct = (data) => {
+  return async (dispatch) => {
+    await fakeStoreApi.post("/products", JSON.stringify(data));
+    dispatch({ type: ActionTypes.ADD_PRODUCT, payload: data });
+    console.log("Product Added Successfully")
   };
 };
 
