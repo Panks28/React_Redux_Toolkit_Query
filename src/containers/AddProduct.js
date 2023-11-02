@@ -15,14 +15,14 @@ function AddProduct() {
   } = useForm();
 
   const SubmitProduct = (data) => {
-    console.log(data, "data")
-    dispatch(addProduct(data))
-  }
+    console.log(data, "data");
+    dispatch(addProduct(data));
+  };
 
   return (
     <div style={{ marginTop: "100px" }}>
       <form
-        onSubmit={handleSubmit((SubmitProduct))}
+        onSubmit={handleSubmit(SubmitProduct)}
         style={{ display: "flex", flexDirection: "column" }}
       >
         <label>
