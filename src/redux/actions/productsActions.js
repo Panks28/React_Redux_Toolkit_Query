@@ -22,7 +22,7 @@ export const addProduct = (data) => {
   return async (dispatch) => {
     await fakeStoreApi.post("/products", JSON.stringify(data));
     dispatch({ type: ActionTypes.ADD_PRODUCT, payload: data });
-    console.log("Product Added Successfully")
+    console.log("Product Added Successfully");
   };
 };
 
@@ -44,3 +44,14 @@ export const removeSelectedProduct = () => {
     type: ActionTypes.REMOVE_SELECTED_PRODUCT,
   };
 };
+
+export const editProductDetails = (data) => {
+  console.log(data, "id")
+  return async (dispatch, getState) => {
+    await fakeStoreApi.put(`/products/${data.id}`, data.data).then((res) => console.log(res, 'res from Thunk Middleware'))
+    dispatch({
+      type:ActionTypes.EDIT_PRODUCT_DETAILS,
+      payload:data
+    })
+  }
+}

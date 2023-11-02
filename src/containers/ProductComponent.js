@@ -18,6 +18,11 @@ const ProductComponent = () => {
                 <div className="header">{title}</div>
                 <div className="meta price">$ {price}</div>
                 <div className="meta">{category}</div>
+                <Link to={`/editproduct/${id}`}>
+                  <button style={{ width: "100px", margin: "15px 0 5px 70px" }}>
+                    Edit Product
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
