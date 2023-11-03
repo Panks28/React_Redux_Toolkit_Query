@@ -46,12 +46,26 @@ export const removeSelectedProduct = () => {
 };
 
 export const editProductDetails = (data) => {
-  console.log(data, "id")
   return async (dispatch, getState) => {
-    await fakeStoreApi.put(`/products/${data.id}`, data.data).then((res) => console.log(res, 'res from Thunk Middleware'))
+    await fakeStoreApi
+      .put(`/products/${data.id}`, data.data)
+      .then((res) => console.log(res, "res from Thunk Middleware"));
     dispatch({
-      type:ActionTypes.EDIT_PRODUCT_DETAILS,
-      payload:data
-    })
-  }
-}
+      type: ActionTypes.EDIT_PRODUCT_DETAILS,
+      payload: data,
+    });
+  };
+};
+
+export const deleteProduct = (id) => {
+  return async (dispatch, getState) => {
+    await fakeStoreApi
+      .delete(`/products/${id}`)
+      .then((res) =>
+        console.log(
+          res,
+          "response after deletion of the selected product with id"
+        )
+      );
+  };
+};

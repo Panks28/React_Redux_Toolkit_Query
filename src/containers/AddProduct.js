@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 import { addProduct } from "../redux/actions/productsActions";
 
 function AddProduct() {
-  console.log("component working fine!");
   const dispatch = useDispatch();
 
   const {
