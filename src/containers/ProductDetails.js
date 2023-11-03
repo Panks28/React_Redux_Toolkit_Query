@@ -5,9 +5,13 @@ import {
   removeSelectedProduct,
   fetchProductDetail,
 } from "../redux/actions/productsActions";
+
 const ProductDetails = () => {
+
   const { productId } = useParams();
+
   let product = useSelector((state) => state.product);
+
   const { image, title, price, category, description } = product;
   const dispatch = useDispatch();
 
@@ -19,6 +23,7 @@ const ProductDetails = () => {
       dispatch(removeSelectedProduct());
     };
   }, [dispatch, productId]);
+
   return (
     <div className="ui grid container">
       {Object.keys(product).length === 0 ? (

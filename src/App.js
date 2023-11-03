@@ -6,6 +6,7 @@ import "./App.css";
 import ProductDetails from "./containers/ProductDetails";
 import AddProduct from "./containers/AddProduct";
 import EditProduct from "./containers/EditProduct";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -15,12 +16,24 @@ function App() {
         <Switch>
           <Route path="/" exact component={ProductListing} />
           <Route path="/product/:productId" component={ProductDetails} />
-          <Route path="/addproduct" component = {AddProduct} />
-          <Route path="/editproduct/:productId" component = {EditProduct}/>
-          <Route> <div style={{marginTop:'80px', color:'DarkGrey', textShadow:'Black 1px 1px 1px', textAlign:'center'}}> <h1> Error: 404 Not Found! </h1></div></Route>
+          <Route path="/addproduct" component={AddProduct} />
+          <Route path="/editproduct/:productId" component={EditProduct} />
+          <Route>
+            <div
+              style={{
+                marginTop: "80px",
+                color: "DarkGrey",
+                textShadow: "Black 1px 1px 1px",
+                textAlign: "center",
+              }}
+            >
+              <h1> Error: 404 Not Found! </h1>
+            </div>
+          </Route>
         </Switch>
       </Router>
     </div>
+    
   );
 }
 
