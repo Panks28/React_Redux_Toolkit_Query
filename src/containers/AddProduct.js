@@ -2,6 +2,9 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { addProduct } from "../redux/actions/productsActions";
+import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 
 function AddProduct() {
   const dispatch = useDispatch();
@@ -9,7 +12,6 @@ function AddProduct() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
 
@@ -20,35 +22,72 @@ function AddProduct() {
 
   return (
     <div style={{ marginTop: "100px" }}>
-      <form
+      <h2 style={{ textAlign: "center" }}>Add a New Product</h2>
+      <Box
+        component="form"
+        style={{
+          border: "1px dotted grey",
+          margin: "20px 100px 10px 100px",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+        autoComplete="on"
         onSubmit={handleSubmit(SubmitProduct)}
-        style={{ display: "flex", flexDirection: "column" }}
       >
-        <label>
-          Title
-          <input {...register("title", { required: true })} />
-        </label>
-        <label>
-          Price
-          <input {...register("price", { required: true })} />
-        </label>
-        <label>
-          Description
-          <input {...register("description", { required: true })} />
-        </label>
-        <label>
-          Image URL
-          <input {...register("image", { required: true })} />
-        </label>
-        <label>
-          Category
-          <input {...register("category", { })} />
-        </label>
-
+        <TextField
+          required
+          id="outlined-required"
+          label="Title"
+          {...register("title")}
+          sx={{ width: "250px", margin: "18px 0 8px 0" }}
+        />
+        {/* <input {...register("title", { required: true })} /> */}
+        <TextField
+          required
+          id="outlined-required"
+          type="number"
+          label="Price"
+          {...register("price")}
+          sx={{ width: "250px", marginBottom: "8px" }}
+        />
+        {/* <input {...register("price", { required: true })} /> */}
+        <TextField
+          required
+          id="outlined-required"
+          label="Description"
+          {...register("description")}
+          sx={{ width: "250px", marginBottom: "8px" }}
+        />
+        {/* <input {...register("description", { required: true })} /> */}
+        <TextField
+          required
+          id="outlined-required"
+          label="Image URL"
+          {...register("image")}
+          sx={{ width: "250px", marginBottom: "8px" }}
+        />
+        {/* <input {...register("image", { required: true })} /> */}
+        <TextField
+          required
+          id="outlined-required"
+          label="Category"
+          {...register("category")}
+          sx={{ width: "250px", marginBottom: "8px" }}
+        />
+        {/* <input {...register("category", {})} /> */}
         {errors.title && <span>This field is required</span>}
 
-        <input type="submit" />
-      </form>
+        <Button
+          variant="contained"
+          type="submit"
+          sx={{ width: "140px", marginBottom: "8px" }}
+        >
+          {" "}
+          Add Product{" "}
+        </Button>
+      </Box>
     </div>
   );
 }
