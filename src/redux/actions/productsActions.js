@@ -3,7 +3,7 @@ import fakeStoreApi from "../../apis/fakeStoreApi";
 
 export const fetchProducts = () => {
   return async (dispatch) => {
-    const response = await fakeStoreApi.get("/products");
+    const response = await fakeStoreApi.get("/getAll");
     dispatch({ type: ActionTypes.FETCH_PRODUCTS, payload: response.data });
   };
 };
@@ -19,8 +19,9 @@ export const fetchProductDetail = (id) => {
 };
 
 export const addProduct = (data) => {
+  console.log(data)
   return async (dispatch) => {
-    await fakeStoreApi.post("/products", JSON.stringify(data));
+    await fakeStoreApi.post("/signup", data);
     dispatch({ type: ActionTypes.ADD_PRODUCT, payload: data });
     console.log("Product Added Successfully");
   };
@@ -48,7 +49,7 @@ export const removeSelectedProduct = () => {
 export const editProductDetails = (data) => {
   return async (dispatch, getState) => {
     await fakeStoreApi
-      .put(`/products/${data.id}`, data.data)
+      .patch(`/update/${data.id}`, data.data)
       .then((res) => console.log(res, "res from Thunk Middleware"));
     dispatch({
       type: ActionTypes.EDIT_PRODUCT_DETAILS,
@@ -60,7 +61,7 @@ export const editProductDetails = (data) => {
 export const deleteProduct = (id) => {
   return async (dispatch, getState) => {
     await fakeStoreApi
-      .delete(`/products/${id}`)
+      .delete(`/delete/${id}`)
       .then((res) =>
         console.log(
           res,

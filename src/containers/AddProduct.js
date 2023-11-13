@@ -42,7 +42,7 @@ function AddProduct() {
         </label>
         <label>
           Category
-          <input {...register("category", { required: true })} />
+          <input {...register("category", { })} />
         </label>
 
         {errors.title && <span>This field is required</span>}
