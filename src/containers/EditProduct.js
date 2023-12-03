@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
-import { useGetOneProductQuery, useUpdateProductMutation } from "../services/products";
+import {
+  useGetOneProductQuery,
+  useUpdateProductMutation,
+} from "../services/products";
 
 function EditProduct() {
   const {
@@ -12,7 +15,7 @@ function EditProduct() {
 
   const { productId } = useParams();
   const { data, isError } = useGetOneProductQuery(productId);
-  const [updateProduct] = useUpdateProductMutation()
+  const [updateProduct] = useUpdateProductMutation();
 
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
@@ -30,12 +33,10 @@ function EditProduct() {
     }
   }, [productId, data]);
 
- 
-
   const editDetails = (data) => {
-    data.id = productId
-    console.log(data.id, "data")
-    updateProduct(data)
+    data.id = productId;
+    console.log(data.id, "data");
+    updateProduct(data);
   };
 
   return (

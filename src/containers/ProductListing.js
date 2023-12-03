@@ -5,8 +5,6 @@ import ProductComponent from "./ProductComponent";
 import { useGetAllProductsQuery } from "../services/products";
 
 const ProductListing = () => {
- 
-
   // const dispatch = useDispatch();
 
   // const { data } = useGetAllProductsQuery();
