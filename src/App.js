@@ -6,7 +6,6 @@ import "./App.css";
 import ProductDetails from "./containers/ProductDetails";
 import AddProduct from "./containers/AddProduct";
 import EditProduct from "./containers/EditProduct";
-import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -33,7 +32,6 @@ function App() {
         </Switch>
       </Router>
     </div>
-    
   );
 }
 

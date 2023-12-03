@@ -19,7 +19,6 @@ export const productsReducer = (state = initialState, { type, payload }) => {
 };
 
 export const selectedProductsReducer = (state = {}, { type, payload }) => {
-  console.log(type);
   switch (type) {
     case ActionTypes.FETCH_PRODUCT_DETAILS:
       console.log(state, "state");

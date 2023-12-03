@@ -1,32 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  removeSelectedProduct,
-  fetchProductDetail,
-} from "../redux/actions/productsActions";
+import { useGetOneProductQuery } from "../services/products";
 
 const ProductDetails = () => {
-
   const { productId } = useParams();
-
-  let product = useSelector((state) => state.product);
-
-  const { image, title, price, category, description } = product;
-  const dispatch = useDispatch();
+  const [productDetails, setProductDetails] = useState({
+    image: "",
+    title: "",
+    price: "",
+    category: "",
+    description: "",
+  });
+  const { data, isLoading } = useGetOneProductQuery(productId);
 
   useEffect(() => {
-    if (productId && productId !== "") {
-      dispatch(fetchProductDetail(productId));
+    if (productId && productId !== "" && data) {
+      setProductDetails(data);
     }
-    return () => {
-      dispatch(removeSelectedProduct());
-    };
-  }, [dispatch, productId]);
+  }, [data, productId]);
+
+  const { image, title, price, category, description } = productDetails;
 
   return (
     <div className="ui grid container">
-      {Object.keys(product).length === 0 ? (
+      {isLoading ? (
         <div>...Loading</div>
       ) : (
         <div className="ui placeholder segment">

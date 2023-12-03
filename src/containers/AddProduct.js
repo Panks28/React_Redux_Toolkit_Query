@@ -5,6 +5,7 @@ import { addProduct } from "../redux/actions/productsActions";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import { useAddProductMutation } from "../services/products";
 
 function AddProduct() {
   const dispatch = useDispatch();
@@ -15,11 +16,15 @@ function AddProduct() {
     formState: { errors },
   } = useForm();
 
+  const [addProduct] = useAddProductMutation()
+
   const SubmitProduct = (data) => {
     console.log(data, "data");
-    dispatch(addProduct(data));
+    addProduct(data)
+    // dispatch(addProduct(data));
   };
 
+  
   return (
     <div style={{ marginTop: "100px" }}>
       <h2 style={{ textAlign: "center" }}>Add a New Product</h2>

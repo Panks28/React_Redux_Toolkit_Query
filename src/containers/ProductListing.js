@@ -2,17 +2,20 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../redux/actions/productsActions";
 import ProductComponent from "./ProductComponent";
+import { useGetAllProductsQuery } from "../services/products";
 
 const ProductListing = () => {
-  const products = useSelector((state) => state.allProducts.products);
+ 
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, []);
+  // const { data } = useGetAllProductsQuery();
+  // console.log(data, "data");
 
-  console.log("Products :", products);
+  // useEffect(() => {
+  //   const {data} = useGetAllProductsQuery()
+  //   console.log(data, "data")}, []);
+
   return (
     <div className="ui grid container">
       <ProductComponent />

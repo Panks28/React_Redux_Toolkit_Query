@@ -72,7 +72,7 @@ router.patch('/update/:id', async (req, res) => {
 //Delete by ID Method
 router.delete('/delete/:id', async (req, res) => {
     try {
-        const data = await Model.findByIdAndDelete(req.params.id)
+        await Model.findByIdAndDelete(req.params.id)
         res.send(`${req.params.id} account has been deleted..`)
     }
     catch (error) {

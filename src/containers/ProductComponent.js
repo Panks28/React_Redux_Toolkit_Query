@@ -2,25 +2,29 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteProduct } from "../redux/actions/productsActions";
+import { useDeleteProductMutation, useGetAllProductsQuery } from "../services/products";
 
 const ProductComponent = () => {
-  const productsList = useSelector((state) => state.allProducts.products);
-  const [products, setProducts] = useState(productsList)
+  // const productsList = useSelector((state) => state.products);
+  const [products, setProducts] = useState([]);
   const dispatch = useDispatch();
-  console.log(products, "products")
+  console.log(products, "products");
 
-  useEffect(()=> {
-    setProducts(productsList)
-  },[productsList])
+  console.log(products, "productslists");
+  const { data, isLoading, isError } = useGetAllProductsQuery();
+  const [deleteProduct] = useDeleteProductMutation()
 
-  console.log(productsList, "productslists")
+
+  useEffect(() => {
+    if (isLoading) {
+      setProducts([]);
+    } else if (data) {
+      setProducts(data);
+    }
+  }, [isLoading, data]);
 
   const renderList = products.map((product) => {
     const { _id, title, image, price, category } = product;
-
-    const deleteProd = (id) => {
-      dispatch(deleteProduct(_id));
-    };
 
     return (
       <div className="four wide column" key={_id}>
@@ -51,7 +55,7 @@ const ProductComponent = () => {
             backgroundColor: "lighgrey",
             textShadow: "black 0.2px 0.2px 0.3px",
           }}
-          onClick={() => deleteProd(_id)}
+          onClick = {() => deleteProduct(_id)}
         >
           Delete Product
         </button>
