@@ -3,9 +3,11 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const productApi = createApi({
   reducerPath: "productApi",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5005" }),
+  tagTypes:['products'],
   endpoints: (builder) => ({
     getAllProducts: builder.query({
       query: () => "/getAll",
+      providesTags:['products']
     }),
 
     addProduct: builder.mutation({
@@ -34,6 +36,7 @@ export const productApi = createApi({
         method: "DELETE",
         body: id,
       }),
+      invalidatesTags:['products']
     }),
   }),
 });
